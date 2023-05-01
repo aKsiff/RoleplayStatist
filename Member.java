@@ -120,7 +120,7 @@ public class Member {
             return role + " | " + name + " | ОТПУСК!!!\n" + "Актив: " + (messages + messages_e) + "\nКомментарий: \n\n";
         }
 
-        if (messages == 0) {
+        if (messages == 0 && messages_e == 0) {
             return role + " | " + name + " | " + (messages + messages_e) + warning + "\n\n";
         }
 
