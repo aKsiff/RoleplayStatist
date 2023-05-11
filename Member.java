@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Member {
+    private static final String warning = " - не удовлетворяет.    !!! Пред за неактив !!!";
     String role, name, firstname;
     int messages, symbols;
     boolean vacation;
@@ -15,13 +16,12 @@ public class Member {
         this.plot = plot;
         this.canon = (canon * 10);
         this.vacation = false;
-        this.eventCoef = canon * 1.2;
+        this.eventCoef = canon;
     }
 
     public String activeNoCoef(String floodMess, String roleMess) {
         int flood_m, role_m, flood_s, role_s;
         double symbols_stat, messages_stat;
-        String warning = "не удовлетворяет.    !!! Пред за флуд !!!";
         StringBuilder result;
 
 
@@ -86,10 +86,9 @@ public class Member {
         return result.toString();
     }
 
-    public String active(String roleMess) {
-        String warning = " - не удовлетворяет.    !!! Пред за неактив !!!";
+    public String active(String roleMess, String bigRole) {
         String result;
-        messages = setMessages(roleMess);
+        messages = setMessages(roleMess) + setMessages(bigRole);
 
         if (this.vacation) {
             return role + " | " + name + " | ОТПУСК!!!\n" + "Актив: " + messages + "\nКомментарий: \n\n";
@@ -110,7 +109,6 @@ public class Member {
     }
 
     public String activeEvent(String roleMess, String eventMess) {
-        String warning = " - не удовлетворяет.    !!! Пред за неактив !!!";
         String result;
 
         messages = setMessages(roleMess);

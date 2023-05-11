@@ -2,11 +2,12 @@
 import java.util.Scanner;
 
 public class Ash {
-    String flood, halfrole, event;
+    String flood, halfrole, event, brole;
     Member[] members;
 
-    public Ash(int membersCount, String flood, String halfrole, String event) {
+    public Ash(int membersCount, String flood, String halfrole, String event, String bRole) {
         members = new Member[membersCount];
+        this.brole = bRole;
         this.flood = flood;
         this.halfrole = halfrole;
         this.event = event;
@@ -48,7 +49,7 @@ public class Ash {
             if (members[i].vacation) {
                 result += members[i].vacationSet();
             } else {
-                result += members[i].active(halfrole);
+                result += members[i].active(halfrole, brole);
             }
         }
         System.out.println(result);
@@ -56,7 +57,7 @@ public class Ash {
 
     public void getResultEvent() {
         String result = "Итоги этой недели представлены ниже. \n" +
-                "Просим заметить, что выставленные оценки канона и ка8чества постов имеют максимально субьективный характер, " +
+                "Просим заметить, что выставленные оценки канона и качества постов имеют максимально субьективный характер, " +
                 "вполне возможно, что являются следствием недопонимания или недосказанностей. " +
                 "По всем вопросам обращаться в личные сообщения администрации. " +
                 "В понятие канон входит не только понимание персонажа, но и качество отыгрыша в общем, " +
