@@ -108,10 +108,10 @@ public class Member {
         return result;
     }
 
-    public String activeEvent(String roleMess, String eventMess) {
+    public String activeEvent(String roleMess, String bifRole, String eventMess) {
         String result;
 
-        messages = setMessages(roleMess);
+        messages = setMessages(roleMess) + setMessages(bifRole);
         int messages_e = setMessages(eventMess);
 
         if (vacation) {
