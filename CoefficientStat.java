@@ -1,16 +1,23 @@
 
 import java.util.Scanner;
 
-public class Ash {
+public class CoefficientStat {
     String flood, halfrole, event, brole;
     Member[] members;
+    BonusedMember[] bMembers;
 
-    public Ash(int membersCount, String flood, String halfrole, String event, String bRole) {
+    public CoefficientStat(int membersCount, String halfrole, String event, String bRole) {
         members = new Member[membersCount];
         this.brole = bRole;
-        this.flood = flood;
         this.halfrole = halfrole;
         this.event = event;
+    }
+
+    public CoefficientStat(int membersCount, String halfrole, String bRole) {
+        members = new Member[membersCount];
+        this.brole = bRole + "Всего:";
+        this.halfrole = halfrole + "Всего:";
+        this.event = "Всего:";
     }
 
     public void setMembers(String list, int membersCount) {
@@ -25,13 +32,27 @@ public class Ash {
     }
 
     public void setVacation(String name) {
-        members[findId(name)].vacation = true;
+        if (members[0] == null) {
+            bMembers[findId(name)].vacation = true;
+        } else {
+            members[findId(name)].vacation = true;
+        }
+
     }
 
     public int findId(String player) {
-        for (int i = 0; i < members.length; i++) {
-            if (members[i].name.equals(player) || members[i].role.equals(player)) {
-                return i;
+        if (bMembers[0] == null) {
+            for (int i = 0; i < members.length; i++) {
+                if (members[i].name.equals(player) || members[i].role.equals(player)) {
+                    return i;
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < bMembers.length; i++) {
+                if (bMembers[i].name.equals(player) || bMembers[i].role.equals(player)) {
+                    return i;
+                }
             }
         }
         return -1;
@@ -81,6 +102,14 @@ public class Ash {
         String result = "";
         for (int i = 0; i < members.length; i++) {
             result += members[i].memberToString() + "\n\n";
+        }
+        return result;
+    }
+
+    public String bMembersToString() {
+        String result = "";
+        for (int i = 0; i < bMembers.length; i++) {
+            result += bMembers[i].memberToString() + "\n\n";
         }
         return result;
     }
